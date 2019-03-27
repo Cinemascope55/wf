@@ -14,10 +14,6 @@ class User
         return $this->id;
     }
 
-    public function getRoles()
-    {
-        return $this->roles;
-    }
 
     public function getPassword()
     {
@@ -34,10 +30,28 @@ class User
         return $this->username;
     }
 
-    public function setRoles($roles)
+    public function setRoles(array $roles)
     {
-        $this->roles = $roles;
+        $this->roles = [];
+        foreach ($roles as $role) {
+            $this->addRole($role);
+        }
         return $this;
+    }
+
+    public function addRole(Role $role)
+    {
+        if (!in_array($role, $this->roles)) {
+            array_push($this->roles, $role);
+        }
+    }
+
+    public function getRoles()
+    {
+        $labels =[ROLE::ROLE_USER];
+        foreach ($this->roles as $role) {
+            array_push($labels, $role->getLabel());
+        }
     }
 
     public function setPassword($password)
@@ -62,6 +76,35 @@ class User
     {
         $this->password = null;
         $this->salt = null;
+        // same way as
+        // $this->setPassword(null);
+        // $this->setSalt(null);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

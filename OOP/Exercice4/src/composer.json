@@ -1,0 +1,16 @@
+{
+    "name": "etudiant/daniel",
+    "description": "This is for exercice 4 project",
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/security": "^4.2@stable"
+    },
+    "autoload": {
+        "psr-4": {
+            "Model\\": "Model/"
+        }
+    }
+
+}
